@@ -78,7 +78,7 @@ function App() {
         beneficiary,
         value: value.toString(),
         isApproved:false
-      },{withCredentials:true});
+      });
       console.log("Message:",data)
     } catch (revertReason) {
       console.log(revertReason.reason)
