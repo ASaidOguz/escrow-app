@@ -28,7 +28,7 @@ async function sendApprove(contract_address){
   } = await server.post(`updateapprove`, {
     address: contract_address
     
-  },{withCredentials:true});
+  });
   console.log("Message:",data)
 }
 
