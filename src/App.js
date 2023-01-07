@@ -86,11 +86,8 @@ function App() {
     } 
   }
   return (
-    <div className='App'>{!loginState&&<Login
-    loginState={loginState}
-    setLoginstate={setLoginstate}
-    />}
-    {loginState&&<div className='float-container'>
+   <div>
+    <div className='float-container'>
       
       <div className="contract">
         <h1> New Contract </h1>
@@ -138,7 +135,7 @@ function App() {
         <Archive/>
         </div>
         </div>
-      </div>}
+      </div>
       <footer>Made with ❤ by ASaidOguz</footer>
       </div>
       
