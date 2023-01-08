@@ -74,8 +74,8 @@ function App() {
       } = await server.post(`send`, {
         chain:escrowContract.provider._network.name,
         address: escrowContract.address,
-        arbiter,
-        beneficiary,
+        arbiter:arbiter,
+        beneficiary:beneficiary,
         value: value.toString(),
         isApproved:false
       });
@@ -88,7 +88,7 @@ function App() {
   return (
    <div>
     <div className='float-container'>
-      
+      <Login/>
       <div className="contract">
         <h1> New Contract </h1>
         <label>

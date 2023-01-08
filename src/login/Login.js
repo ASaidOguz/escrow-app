@@ -21,8 +21,9 @@ export default function Login({logState,setLoginstate}) {
       const { data}=await server.post('register',{
         name:registerusername,
         password:registeruserpass
-       },{withCredentials:true})
+       })
        console.log(data)
+       window.localStorage.setItem('jwt',data.jwt)
     
     
       
@@ -35,6 +36,9 @@ export default function Login({logState,setLoginstate}) {
             withCredentials:true,
             url:"https://localhost:3042/register"
         }).then(res=>console.log(res)) */
+    }
+    const clear_storage=()=>{
+      localStorage.clear();
     }
     const login=async()=>{
        const {
@@ -76,7 +80,7 @@ export default function Login({logState,setLoginstate}) {
         <div className='center'><strong>User Pass :</strong>&nbsp;<input placeholder='password' onChange={e=>setRegisteruserpass(e.target.value)}></input></div>
         <button className='center'onClick={register}>Submit</button>
         </div>
-
+         <button onClick={clear_storage}>Log out</button>
         <div><h1><strong>Login</strong></h1></div>
         <div className='center'><strong>User Name :</strong><input placeholder='username' onChange={e=>setLoginusername(e.target.value)}></input></div>
         <div className='center'><strong>User Pass :</strong>&nbsp;<input placeholder='password' onChange={e=>setLoginpass(e.target.value)}></input></div>
