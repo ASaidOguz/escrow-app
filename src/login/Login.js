@@ -9,7 +9,7 @@ export default function Login({logState,setLoginstate}) {
     const[loginpass,setLoginpass]=useState("")
      
     useEffect(()=>{async function fetch(){
-        const{data:Archive}=await server.get("getarchive",{withCredentials:true})
+        const{data:Archive}=await server.get("getarchive")
         console.log("Archive:",Archive)
         setLoginstate(Archive)
       }
