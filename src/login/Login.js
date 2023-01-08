@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import server from '../server'
 
-export default function Login({logState,setLoginstate}) {
+export default function Login({jwt,setJwt}) {
     const[registerusername,setRegisterusername]=useState("")
     const[registeruserpass,setRegisteruserpass]=useState("")
     const[loginusername,setLoginusername]=useState("")
@@ -11,7 +11,7 @@ export default function Login({logState,setLoginstate}) {
     useEffect(()=>{async function fetch(){
         const{data:Archive}=await server.get("getarchive")
         console.log("Archive:",Archive)
-        setLoginstate(Archive)
+       
       }
        fetch();
       },[])
@@ -23,6 +23,7 @@ export default function Login({logState,setLoginstate}) {
         password:registeruserpass
        })
        console.log(data)
+       setJwt(data.jwt)
        window.localStorage.setItem('jwt',data.jwt)
     
     
@@ -53,7 +54,7 @@ export default function Login({logState,setLoginstate}) {
       }
       );
       console.log("Message:",data)
-       setLoginstate(data)
+       
       
      /*  await axios({
             method:'POST',

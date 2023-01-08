@@ -37,7 +37,7 @@ function App() {
   const [escrows, setEscrows] = useState([]);
   const [account, setAccount] = useState();
   const [signer, setSigner] = useState();
-  const[loginState,setLoginstate]=useState(null)
+  const[jwt,setJwt]=useState("")
   
   useEffect(() => {
     async function getAccounts() {
@@ -49,7 +49,7 @@ function App() {
 
     getAccounts();
   }, [account]);
- console.log("Login state:",loginState)
+ 
   async function newContract() {
     const beneficiary = document.getElementById('beneficiary').value;
     const arbiter = document.getElementById('arbiter').value;
@@ -88,7 +88,8 @@ function App() {
   return (
    <div>
     <div className='float-container'>
-      <Login/>
+      <Login jwt={jwt}
+            setJwt={setJwt}/>
       <div className="contract">
         <h1> New Contract </h1>
         <label>
