@@ -30,7 +30,7 @@ fetch();
 //console.log("Archive",archive)
 const handleAllContracts=()=>{
   async function fetch(){
-    const{data:Archive}=await server.get("getarchive",{withCredentials:true})
+    const{data:Archive}=await server.get("getarchive")
     console.log("Archive:",Archive)
     setArchive(Archive)
   }
@@ -40,7 +40,7 @@ const handleAllContracts=()=>{
 const handleAppContracts=()=>{
 let appContracts=[]
 async function fetch(){
-  const{data:Archive}=await server.get("getarchive",{withCredentials:true})
+  const{data:Archive}=await server.get("getarchive")
   console.log("Archive:",Archive)
   Archive.map((arch)=>{
     if(arch.isapproved){
@@ -56,7 +56,7 @@ fetch();
 const handleunappContracts=()=>{
   let unappContracts=[]
   async function fetch(){
-    const{data:Archive}=await server.get("getarchive",{withCredentials:true})
+    const{data:Archive}=await server.get("getarchive")
     console.log("Archive:",Archive)
     Archive.map((arch)=>{
       if(!arch.isapproved){
