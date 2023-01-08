@@ -23,11 +23,6 @@ export default function Login({jwt,setJwt}) {
         password:registeruserpass
        })
        console.log(data)
-       setJwt(data.jwt)
-       window.localStorage.setItem('jwt',data.jwt)
-    
-    
-      
        /* axios({
             method:'POST',
             data:{
@@ -40,6 +35,7 @@ export default function Login({jwt,setJwt}) {
     }
     const clear_storage=()=>{
       localStorage.clear();
+      setJwt("")
     }
     const login=async()=>{
        const {
@@ -49,13 +45,10 @@ export default function Login({jwt,setJwt}) {
             name:loginusername,
             password:loginpass
       },
-      { 
-        withCredentials:true,
-      }
       );
       console.log("Message:",data)
-       
-      
+      window.localStorage.setItem('jwt',data.jwt)
+      setJwt(data.jwt)
      /*  await axios({
             method:'POST',
             data:{
