@@ -14,7 +14,7 @@ export default function Login({jwt,setJwt}) {
        
       }
        fetch();
-      },[])
+      },[jwt])
 
 
     const register=async()=>{
