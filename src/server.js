@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const server = axios.create({
-  baseURL: "http://localhost:3042" //"https://express-server-virid.vercel.app",
+  baseURL: "https://express-server-virid.vercel.app",
   
 });
 server.defaults.headers.common['Authorization'] =`Bearer ${window.localStorage.getItem('jwt')}`;
