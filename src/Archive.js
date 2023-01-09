@@ -7,7 +7,8 @@ import PushNotify from './PushNotify';
 import {Utils} from 'alchemy-sdk'
 import Loader from './Loader';
 import CcButton from './CcButton';
-export default function Archive() {
+
+export default function Archive({jwt}) {
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const[archive,setArchive]=useState([])
 
@@ -21,16 +22,26 @@ const escrowContract = new web3.eth.Contract(ABI, escrowContractAddress);
 */
 
 useEffect(()=>{async function fetch(){
-  const{data:Archive}=await server.get("getarchive")
+  const config={
+    headers:{
+      Authorization:`Bearer ${jwt}`
+    }
+  }
+  const{data:Archive}=await server.get("getarchive",config)
   console.log("Archive:",Archive)
   setArchive(Archive)
 }
 fetch();
-},[])
+},[jwt])
 //console.log("Archive",archive)
 const handleAllContracts=()=>{
   async function fetch(){
-    const{data:Archive}=await server.get("getarchive")
+    const config={
+      headers:{
+        Authorization:`Bearer ${jwt}`
+      }
+    }
+    const{data:Archive}=await server.get("getarchive",config)
     console.log("Archive:",Archive)
     setArchive(Archive)
   }
@@ -39,8 +50,13 @@ const handleAllContracts=()=>{
 }
 const handleAppContracts=()=>{
 let appContracts=[]
+const config={
+  headers:{
+    Authorization:`Bearer ${jwt}`
+  }
+}
 async function fetch(){
-  const{data:Archive}=await server.get("getarchive")
+  const{data:Archive}=await server.get("getarchive",config)
   console.log("Archive:",Archive)
   Archive.map((arch)=>{
     if(arch.isapproved){
@@ -55,8 +71,13 @@ fetch();
 }
 const handleunappContracts=()=>{
   let unappContracts=[]
+  const config={
+    headers:{
+      Authorization:`Bearer ${jwt}`
+    }
+  }
   async function fetch(){
-    const{data:Archive}=await server.get("getarchive")
+    const{data:Archive}=await server.get("getarchive",config)
     console.log("Archive:",Archive)
     Archive.map((arch)=>{
       if(!arch.isapproved){

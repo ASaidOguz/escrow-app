@@ -23,12 +23,16 @@ export async function approve(escrowContract, signer) {
 }
 
 async function sendApprove(contract_address){
+  const config={
+    headers:{
+      Authorization:`Bearer ${window.localStorage.getItem('jwt')}`
+    }}
   const {
     data
   } = await server.post(`updateapprove`, {
     address: contract_address
     
-  });
+  },config);
   console.log("Message:",data)
 }
 
@@ -69,6 +73,10 @@ function App() {
       };
       
       setEscrows([...escrows, escrow]);
+      const config={
+        headers:{
+          Authorization:`Bearer ${jwt}`
+        }}
       const {
         data
       } = await server.post(`send`, {
@@ -78,7 +86,7 @@ function App() {
         beneficiary:beneficiary,
         value: value.toString(),
         isApproved:false
-      });
+      },config);
       console.log("Message:",data)
     } catch (revertReason) {
       console.log(revertReason.reason)
@@ -133,7 +141,7 @@ function App() {
       <div className='archived-contracts'>
       <h1> Archived Contracts </h1>
       <div id='container'>
-        <Archive/>
+        <Archive jwt={jwt}/>
         </div>
         </div>
       </div>

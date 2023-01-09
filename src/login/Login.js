@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import server from '../server'
 
 export default function Login({jwt,setJwt}) {
@@ -9,7 +8,12 @@ export default function Login({jwt,setJwt}) {
     const[loginpass,setLoginpass]=useState("")
      
     useEffect(()=>{async function fetch(){
-        const{data:Archive}=await server.get("getarchive")
+        const config={
+          headers:{
+            Authorization:`Bearer ${jwt}`
+          }
+        }
+        const{data:Archive}=await server.get("getarchive",config)
         console.log("Archive:",Archive)
        
       }
@@ -34,8 +38,11 @@ export default function Login({jwt,setJwt}) {
         }).then(res=>console.log(res)) */
     }
     const clear_storage=()=>{
-      localStorage.clear();
+      
+      localStorage.clear('jwt');
       setJwt("")
+      
+      
     }
     const login=async()=>{
        const {
@@ -48,6 +55,7 @@ export default function Login({jwt,setJwt}) {
       );
       console.log("Message:",data)
       window.localStorage.setItem('jwt',data.jwt)
+      console.log(window.localStorage.getItem('jwt'))
       setJwt(data.jwt)
      /*  await axios({
             method:'POST',
