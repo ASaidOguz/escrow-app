@@ -1,12 +1,14 @@
 import { approve } from "./App";
 import { Utils } from "alchemy-sdk";
+import userEvent from "@testing-library/user-event";
 export default function Escrow({
   address,
   arbiter,
   beneficiary,
   value,
   escrowContract,
-  signer
+  signer,
+  user
 }) {
   const handleApprove= async () => {
     escrowContract.on('Approved', () => {

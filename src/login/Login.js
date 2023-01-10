@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import PushNotify from '../PushNotify'
 import server from '../server'
 
-export default function Login({jwt,setJwt}) {
+export default function Login({jwt,setJwt,user,setUser}) {
     const[registerusername,setRegisterusername]=useState("")
     const[registeruserpass,setRegisteruserpass]=useState("")
     const[loginusername,setLoginusername]=useState("")
@@ -38,38 +39,31 @@ export default function Login({jwt,setJwt}) {
         }).then(res=>console.log(res)) */
     }
     const clear_storage=()=>{
-      
+      //In logout stage you need to remove all infor from frontend;jwt - user
       localStorage.clear('jwt');
+      localStorage.clear('user')
       setJwt("")
-      
-      
+      setUser({})
     }
     const login=async()=>{
-       const {
-        data
-      } = await server.post(`login`, 
-      {
-            name:loginusername,
-            password:loginpass
-      },
-      );
-      console.log("Message:",data)
-      window.localStorage.setItem('jwt',data.jwt)
-      console.log(window.localStorage.getItem('jwt'))
-      setJwt(data.jwt)
-     /*  await axios({
-            method:'POST',
-            data:{
-            name:loginusername,
-            password:loginpass
-            },
-            withCredentials:true,
-            url:"https://express-server-nc6y-asaidoguz.vercel.app/login"
-        }).then(res=>{
-          
-          setLoginstate(res)},(error)=>{
-            console.log("Reason:",error)
-          }) */
+      try {
+        const {
+          data
+        } = await server.post(`login`, 
+        {
+              name:loginusername,
+              password:loginpass
+        },
+        );
+        PushNotify("success","Wellcome","You'r logged in ♥",6000)
+        console.log(data)
+        window.localStorage.setItem('jwt',data.jwt)
+        window.localStorage.setItem('user',data.user)
+        setJwt(data.jwt)
+        setUser(data.user)
+      } catch (error) {
+        PushNotify("error","Auth Error","Authentication failed",6000)
+      }
     }
   return (
     <div className='center'>

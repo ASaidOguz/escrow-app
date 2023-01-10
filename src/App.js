@@ -6,6 +6,8 @@ import Escrow from './Escrow';
 import Login from './login/Login';
 import PushNotify from './PushNotify';
 import server from './server';
+
+if(!window.ethereum){PushNotify("error","Wallet","You need to install wallet to use The Dapp",10000)}
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 
 export async function approve(escrowContract, signer) {
@@ -42,7 +44,12 @@ function App() {
   const [account, setAccount] = useState();
   const [signer, setSigner] = useState();
   const[jwt,setJwt]=useState("")
-  
+  const[user,setUser]=useState({})
+  //If jwt is null pls get the jwt from local storage if it exist! 
+  if(jwt==""){
+   setJwt(window.localStorage.getItem("jwt"))
+  }
+
   useEffect(() => {
     async function getAccounts() {
       const accounts = await provider.send('eth_requestAccounts', []);
@@ -80,6 +87,7 @@ function App() {
       const {
         data
       } = await server.post(`send`, {
+        user:user.name,
         chain:escrowContract.provider._network.name,
         address: escrowContract.address,
         arbiter:arbiter,
@@ -88,6 +96,7 @@ function App() {
         isApproved:false
       },config);
       console.log("Message:",data)
+      PushNotify("success","Contract Deployment","Contract deployment succesful!")
     } catch (revertReason) {
       console.log(revertReason.reason)
       PushNotify("error",'EVM EXCEPTION',revertReason.reason)
@@ -97,7 +106,11 @@ function App() {
    <div>
     <div className='float-container'>
       <Login jwt={jwt}
-            setJwt={setJwt}/>
+            setJwt={setJwt}
+            user={user}
+            setUser={setUser}/>
+      </div>
+        {jwt&&<div className='float-container'>
       <div className="contract">
         <h1> New Contract </h1>
         <label>
@@ -132,19 +145,21 @@ function App() {
         
         <div id="container">
           {escrows.map((escrow) => {
-            return <Escrow key={escrow.address} {...escrow} />;
+            return <Escrow key={escrow.address} {...escrow} user={user} />;
           })}
         </div>
-        
+      
        
       </div>
       <div className='archived-contracts'>
       <h1> Archived Contracts </h1>
       <div id='container'>
-        <Archive jwt={jwt}/>
+        <Archive jwt={jwt}
+        user={user}/>
         </div>
         </div>
-      </div>
+        
+      </div>}
       <footer>Made with ❤ by ASaidOguz</footer>
       </div>
       

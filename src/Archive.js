@@ -8,7 +8,7 @@ import {Utils} from 'alchemy-sdk'
 import Loader from './Loader';
 import CcButton from './CcButton';
 
-export default function Archive({jwt}) {
+export default function Archive({jwt,user}) {
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const[archive,setArchive]=useState([])
 
@@ -162,6 +162,10 @@ return(
     <div className='container'key={arch.contract_address}>
       
       <ul className='fields'>
+      <li>
+          <div>Contract Owner</div>
+          <div>{arch.username}</div>
+        </li>
         <li>
           <div>Chain</div>
           <div>{arch.chain}</div>
