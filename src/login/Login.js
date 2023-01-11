@@ -58,9 +58,9 @@ export default function Login({jwt,setJwt,user,setUser}) {
         PushNotify("success","Wellcome","You'r logged in ♥",6000)
         console.log(data)
         window.localStorage.setItem('jwt',data.jwt)
-        window.localStorage.setItem('user',data.user)
+        window.localStorage.setItem('user',(data.user.name))
         setJwt(data.jwt)
-        setUser(data.user)
+        setUser(data.user.name)
       } catch (error) {
         PushNotify("error","Auth Error","Authentication failed",6000)
       }

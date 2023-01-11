@@ -44,10 +44,11 @@ function App() {
   const [account, setAccount] = useState();
   const [signer, setSigner] = useState();
   const[jwt,setJwt]=useState("")
-  const[user,setUser]=useState({})
+  const[user,setUser]=useState("")
   //If jwt is null pls get the jwt from local storage if it exist! 
   if(jwt==""){
    setJwt(window.localStorage.getItem("jwt"))
+   setUser((window.localStorage.getItem("user")))
   }
 
   useEffect(() => {
@@ -87,7 +88,7 @@ function App() {
       const {
         data
       } = await server.post(`send`, {
-        user:user.name,
+        user:user,
         chain:escrowContract.provider._network.name,
         address: escrowContract.address,
         arbiter:arbiter,
