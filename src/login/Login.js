@@ -28,15 +28,8 @@ export default function Login({jwt,setJwt,user,setUser}) {
         password:registeruserpass
        })
        console.log(data)
-       /* axios({
-            method:'POST',
-            data:{
-            name:registerusername,
-            password:registeruserpass
-            },
-            withCredentials:true,
-            url:"https://localhost:3042/register"
-        }).then(res=>console.log(res)) */
+       PushNotify("success","Registration",data,6000)
+       
     }
     const clear_storage=()=>{
       //In logout stage you need to remove all infor from frontend;jwt - user
