@@ -97,7 +97,7 @@ function App() {
         isApproved:false
       },config);
       console.log("Message:",data)
-      PushNotify("success","Contract Deployment","Contract deployment succesful!")
+      PushNotify("success","Contract Deployment","Contract deployment initiated!")
     } catch (revertReason) {
       console.log(revertReason.reason)
       PushNotify("error",'EVM EXCEPTION',revertReason.reason)
