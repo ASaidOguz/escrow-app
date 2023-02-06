@@ -7,7 +7,7 @@ import PushNotify from './PushNotify';
 import {Utils} from 'alchemy-sdk'
 import Loader from './Loader';
 import CcButton from './CcButton';
-
+import { extendTheme, ChakraProvider,Box, Input, Button } from '@chakra-ui/react'
 export default function Archive({jwt,user}) {
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const[archive,setArchive]=useState([])
@@ -127,8 +127,9 @@ const handleCheckApprove=async(contract_address)=>{
 }
 return(
   <div className="existing-contract">
-  <div 
-          className="smallbutton"
+    <Box display="flex" justifyContent="space-between">
+  <Button colorScheme={'red'} mx={2}
+          
           onClick={(e) => {
             e.preventDefault();
 
@@ -136,9 +137,9 @@ return(
           }}
         >
         Refresh Contracts by Database
-        </div>
-        <div
-          className="smallbutton"
+        </Button>
+        <Button colorScheme={'green'} mx={2}
+          
           onClick={(e) => {
             e.preventDefault();
 
@@ -146,9 +147,9 @@ return(
           }}
         >
          Query Approved Contracts By Database
-        </div>
-        <div
-          className="smallbutton"
+        </Button>
+        <Button colorScheme={'blue'} mx={2}
+          
           onClick={(e) => {
             e.preventDefault();
 
@@ -156,7 +157,8 @@ return(
           }}
         >
          Query Unappproved Contracts By Database
-        </div>
+        </Button >
+        </Box>
   {archive.length >= 1 ?<>{archive.reverse().map((arch)=>
     
     <div className='container'key={arch.contract_address}>
@@ -172,19 +174,22 @@ return(
         </li>
         <li>
         <div>Contract Address</div>
-        <div>{arch.contract_address.slice(0,3)}...{arch.contract_address.slice(-5)} <CcButton text={arch.contract_address}/></div>
+        <div>{arch.contract_address} <CcButton text={arch.contract_address}/></div>
         </li>
         <li>
         <div>Arbiter</div>
-        <div>{arch.arbiter.slice(0,5)}...{arch.arbiter.slice(-5)} <CcButton text={arch.arbiter}/></div>
+        <div>{arch.arbiter} <CcButton text={arch.arbiter}/></div>
         </li>
         <li>
         <div>Beneficiary</div>
-        <div>{arch.beneficiary.slice(0,5)}...{arch.beneficiary.slice(-5)} <CcButton text={arch.beneficiary}/></div>
+        <div>{arch.beneficiary} <CcButton text={arch.beneficiary}/></div>
         </li>
         <li>
         <div>Value</div>
         <div>{Utils.formatEther(arch.amount)} <strong>ETH</strong></div>
+        </li>
+        <li>
+    {arch.withinterest&&<div><strong>Eth Staked with %30 interest</strong></div>}
         </li>
          <li>
     {arch.isapproved&&<div><strong>Contract Approved</strong></div>}
@@ -220,7 +225,7 @@ return(
   )}
   
   </> 
-  :<div className='existing-contract'><Loader/></div>}
+  :<Box display="flex" justifyContent="center"><div className='existing-contract'><Loader/></div></Box>}
   </div>
  
 )}

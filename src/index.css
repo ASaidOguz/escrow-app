@@ -9,8 +9,8 @@ body {
 .contract, .existing-contracts {
   margin: 20px;
   display: inline-block;
-  border-radius: 25px;
-  padding: 20px;
+  border-radius: 20px;
+  padding: 5px;
   border: 1px solid #ddd;
   background-color: #fff;
 }
