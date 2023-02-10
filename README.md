@@ -55,6 +55,8 @@ Backend server works on localhost port 3042
 
 to start frontend on localhost port 3000
 
+CONTRACTS: https://github.com/ASaidOguz/escrow-hardhat/tree/main/contracts
+
 FOR STAKING INTEREST CALCULATION TESTS:  https://github.com/ASaidOguz/escrow-hardhat/tree/main/test
 
 CONTRACT'S GAS OPTIMIZATION REPORT: https://github.com/ASaidOguz/escrow-hardhat/blob/main/solstat_report.md
