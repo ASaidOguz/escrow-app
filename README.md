@@ -57,6 +57,8 @@ to start frontend on localhost port 3000
 
 CONTRACTS: https://github.com/ASaidOguz/escrow-hardhat/tree/master/contracts
 
+STAKER CONTRACT Deployed and verified :https://goerli.etherscan.io/address/0x048Bd6BF26C3305c354aEFab0cb5D7D12D290688#code
+
 FOR STAKING INTEREST CALCULATION TESTS:  https://github.com/ASaidOguz/escrow-hardhat/tree/master/test
 
 CONTRACT'S GAS OPTIMIZATION REPORT: https://github.com/ASaidOguz/escrow-hardhat/blob/master/solstat_report.md
