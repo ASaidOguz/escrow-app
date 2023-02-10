@@ -57,6 +57,8 @@ to start frontend on localhost port 3000
 
 FOR STAKING INTEREST CALCULATION TESTS:  https://github.com/ASaidOguz/escrow-hardhat/tree/main/test
 
+CONTRACT'S GAS OPTIMIZATION REPORT: https://github.com/ASaidOguz/escrow-hardhat/blob/main/solstat_report.md
+
 
 LIVE DEMO ON :
  https://escrow-app-five.vercel.app/
