@@ -18,11 +18,11 @@ Web3 escrow contract maker project where you can create typical escrow smart con
     
     Simple auth json web token implemented 
 
-- [ ] Escrow contract staking 
+- [x] Escrow contract staking 
    
     Implementing staker functionality where you can stake your eth if you want to get interest while your given work in progress
 
-- [ ] Escrow staking interest mechanism 
+- [x] Escrow staking interest mechanism 
 
     Using safe math library to create interest mechanism where user can get interest based on yearly interest values based in selection      
 
@@ -55,6 +55,10 @@ Backend server works on localhost port 3042
 
 to start frontend on localhost port 3000
 
-LIVE DEMO ON : https://escrow-app-five.vercel.app/
+FOR STAKING INTEREST CALCULATION TESTS:  https://github.com/ASaidOguz/escrow-hardhat/tree/main/test
+
+
+LIVE DEMO ON :
+ https://escrow-app-five.vercel.app/
 
 cause of the Cors security please use the above link for live demo . 
